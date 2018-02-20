@@ -8,7 +8,7 @@ namespace ipcam
         {
             InitializeComponent();
 
-            MainPage = new ipcamPage();
+            MainPage = new WebViewPage();
         }
 
         protected override void OnStart()

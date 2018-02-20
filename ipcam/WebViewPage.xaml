@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ipcam.WebViewPage">
+    <ContentPage.Content>
+        <StackLayout x:Name="stackLayout" >
+            <Button HeightRequest="30" WidthRequest="200" BorderColor="Teal" BorderWidth="1" Text="Back" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Clicked="backClicked" TextColor="Teal" />
+            <Label x:Name="LoadingLabel" IsVisible="false" Text="Loading..." HorizontalOptions="Center" TextColor="Teal" ></Label>
+            <WebView x:Name="webView" WidthRequest="1000" HeightRequest="1000" Navigating="Handle_Navigating" Navigated="Handle_Navigated" />
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>
