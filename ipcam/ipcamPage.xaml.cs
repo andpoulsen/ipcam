@@ -15,19 +15,19 @@ namespace ipcam
             InitializeComponent();
         }
 
-        protected override async void OnAppearing()
-        {
-            try{
-                // Look for existing user
-                var result = await App.AuthenticationClient.AcquireTokenSilentAsync(Constants.Scopes, GetUserByPolicy(App.AuthenticationClient.Users, Constants.SignUpSignInPolicy), Constants.Authority, false);
-                await Navigation.PushAsync(new WebViewPage());
-            }
-            catch{
-                LblWait.IsVisible = false;
-                BtnLogIn.IsVisible = true;
-            }
-            base.OnAppearing();
-        }
+        //protected override async void OnAppearing()
+        //{
+        //    try{
+        //        // Look for existing user
+        //        var result = await App.AuthenticationClient.AcquireTokenSilentAsync(Constants.Scopes, GetUserByPolicy(App.AuthenticationClient.Users, Constants.SignUpSignInPolicy), Constants.Authority, false);
+        //        await Navigation.PushAsync(new WebViewPage());
+        //    }
+        //    catch{
+        //        LblWait.IsVisible = false;
+        //        BtnLogIn.IsVisible = true;
+        //    }
+        //    base.OnAppearing();
+        //}
 
         async void Handle_Clicked(object sender, System.EventArgs e)
         {

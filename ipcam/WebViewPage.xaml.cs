@@ -17,6 +17,7 @@ namespace ipcam
             this.webView.VerticalOptions = LayoutOptions.FillAndExpand;
 
             On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
+
         }
 
         void Handle_Navigating(object sender, Xamarin.Forms.WebNavigatingEventArgs e)
