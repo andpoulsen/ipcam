@@ -1,14 +1,20 @@
 ﻿using Xamarin.Forms;
+using Microsoft.Identity.Client;
 
 namespace ipcam
 {
     public partial class App : Application
     {
+        public static PublicClientApplication AuthenticationClient { get; private set; }
+        
         public App()
         {
             InitializeComponent();
 
-            MainPage = new WebViewPage();
+            AuthenticationClient = new PublicClientApplication(Constants.ClientID, Constants.Authority);
+            AuthenticationClient.RedirectUri = Constants.RedirectUri;
+
+            MainPage = new NavigationPage(new ipcamPage());
         }
 
         protected override void OnStart()
