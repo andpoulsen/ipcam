@@ -1,5 +1,6 @@
 ﻿using Xamarin.Forms;
 using Microsoft.Identity.Client;
+using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System;
 using System.Text;
@@ -10,6 +11,8 @@ namespace ipcam
 {
     public partial class ipcamPage : ContentPage
     {
+        private readonly string[] emailsWhitelist = new[] { "anders.poulsen+adb2ctest@jayway.com", "and.poulsen@gmail.com", "anders@familien-poulsen.com", "anders.poulsen@jayway.com", "gittesommer@gmail.com", "gittenielsen1987@gmail.com" };
+        
         public ipcamPage()
         {
             InitializeComponent();
@@ -31,11 +34,22 @@ namespace ipcam
 
         async void Handle_Clicked(object sender, System.EventArgs e)
         {
-            try{
+            try
+            {
                 var results = await App.AuthenticationClient.AcquireTokenAsync(Constants.Scopes, GetUserByPolicy(App.AuthenticationClient.Users, Constants.SignUpSignInPolicy), Constants.UiParent);
-                await Navigation.PushAsync(new WebViewPage());
+
+
+                if (CheckUserInfo(results))
+                {
+                    LblWait.IsVisible = false;
+                    await Navigation.PushAsync(new WebViewPage());
+                }
+                else{
+                    LblWait.IsVisible = true;
+                }
             }
-            catch(MsalException ex){
+            catch (MsalException ex)
+            {
                 if (ex.Message != null && ex.Message.Contains("AADB2C90118"))
                 {
                     throw new Exception("Not implemented");
@@ -47,8 +61,23 @@ namespace ipcam
             }
         }
 
+        private bool CheckUserInfo(AuthenticationResult ar){
+            var user = ParseIdToken(ar.IdToken);
+            var isGood = user["emails"].Any(e => emailsWhitelist.Contains(((string)e)));
+            return isGood;
+        }
+
+        private JObject ParseIdToken(string idToken)
+        {
+            // Get the piece with actual user info
+            idToken = idToken.Split('.')[1];
+            idToken = Base64UrlDecode(idToken);
+            return JObject.Parse(idToken);
+        }
+
         private IUser GetUserByPolicy(IEnumerable<IUser> users, string policy)
         {
+            return null;
             foreach (var user in users)
             {
                 string userIdentifier = Base64UrlDecode(user.Identifier.Split('.')[0]);

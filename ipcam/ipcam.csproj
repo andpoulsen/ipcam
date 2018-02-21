@@ -64,6 +64,9 @@
     <Reference Include="Microsoft.Identity.Client">
       <HintPath>..\packages\Microsoft.Identity.Client.1.1.2-preview0008\lib\netstandard1.1\Microsoft.Identity.Client.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\portable-net45+win8+wp8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
