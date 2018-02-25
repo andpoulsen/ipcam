@@ -12,7 +12,7 @@ namespace ipcam
             InitializeComponent();
             this.webView.Source = new UrlWebViewSource
             {
-                Url = $"https://www.familien-poulsen.com/img/?dir={DateTime.Today.ToString("yyyyMMdd")}&order=modified&sort=desc&password=8qt-wsW-hfc-GnH"
+                Url = $"https://www.familien-poulsen.com/img/?dir={DateTime.Today.ToString("yyyyMMdd")}&order=name&sort=desc&password=8qt-wsW-hfc-GnH"
             };
             this.webView.VerticalOptions = LayoutOptions.FillAndExpand;
 

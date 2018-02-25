@@ -11,7 +11,7 @@ namespace ipcam
 {
     public partial class ipcamPage : ContentPage
     {
-        private readonly string[] emailsWhitelist = new[] { "anders.poulsen+adb2ctest@jayway.com", "and.poulsen@gmail.com", "anders@familien-poulsen.com", "anders.poulsen@jayway.com", "gittesommer@gmail.com", "gittenielsen1987@gmail.com" };
+        private readonly string[] emailsWhitelist = new[] { "anders.poulsen+adb2ctest@jayway.com", "and.poulsen@gmail.com", "anders@familien-poulsen.com", "anders.poulsen@jayway.com", "gittesommer@gmail.com", "gittenielsen1987@gmail.com", "gittesommer@spejdernet.dk" };
         
         public ipcamPage()
         {
@@ -34,6 +34,16 @@ namespace ipcam
 
         async void Handle_Clicked(object sender, System.EventArgs e)
         {
+            try{
+                // Look for existing user
+                var result = await App.AuthenticationClient.AcquireTokenSilentAsync(Constants.Scopes, App.AuthenticationClient.Users.FirstOrDefault(), Constants.Authority, false);
+                await Navigation.PushAsync(new WebViewPage());
+                return;
+            }
+            catch(Exception exc){
+                var i = exc;
+            }
+
             try
             {
                 var results = await App.AuthenticationClient.AcquireTokenAsync(Constants.Scopes, GetUserByPolicy(App.AuthenticationClient.Users, Constants.SignUpSignInPolicy), Constants.UiParent);

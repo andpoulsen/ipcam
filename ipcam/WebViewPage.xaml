@@ -3,7 +3,7 @@
     <ContentPage.Content>
         <StackLayout x:Name="stackLayout" Margin="0,10,0,0" >
             <StackLayout Orientation="Horizontal">
-                <Button HeightRequest="30" WidthRequest="200" BackgroundColor="Teal" BorderColor="Teal" BorderWidth="1" Text="To all images" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Clicked="backClicked" TextColor="White" />
+                <Button HeightRequest="30" WidthRequest="200" BackgroundColor="Teal" BorderColor="Teal" BorderWidth="1" Text="Back" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Clicked="backClicked" TextColor="White" />
             </StackLayout>
             <Label x:Name="LoadingLabel" IsVisible="false" Text="Loading..." HorizontalOptions="Center" TextColor="Teal" ></Label>
             <WebView x:Name="webView" WidthRequest="1000" HeightRequest="1000" Navigating="Handle_Navigating" Navigated="Handle_Navigated" />
